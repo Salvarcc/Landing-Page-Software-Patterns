@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>IntiSky - Gestión y Análisis Inteligente de Vuelos</title>
+    <style>
+        :root {
+            --primary-color: #0d47a1; 
+            --secondary-color: #ff6f00; 
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(13, 71, 161, 0.9), rgba(30, 41, 59, 0.95)), 
+                        url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1200') no-repeat center center/cover;
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #e65100;
+        }
+
+        .features {
+            padding: 4rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .features .subtitle {
+            margin-bottom: 3rem;
+            color: #64748b;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .cta-form-section {
+            background-color: #f1f5f9;
+            padding: 4rem 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-container {
+            background-color: var(--white);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            max-width: 550px;
+            width: 100%;
+        }
+
+        .form-container h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-container p {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark-color);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 1rem;
+            color: var(--dark-color);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background-color: #0b3c85;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: #94a3b8;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .form-container {
+                padding: 1.5rem;
+            }
+            header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="Screenshot_2026-06-05_193834-removebg-preview.png" alt="Intisky image" width="50">
+        <div style="font-size: 0.85rem; color: #64748b; font-weight: 500;">By Celtics Solutions</div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Búsqueda, gestión y análisis de vuelos solo Para ti</h1>
+            <p>Deja de registrarte en múltiples plataformas dispersas. IntiSky centraliza, procesa y analiza en tiempo real datos masivos de vuelos nacionales e internacionales directo en tu dispositivo móvil.</p>
+            <a href="#contacto" class="btn-primary">Obtener Acceso Anticipado</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Optimización de tus viajes en una sola plataforma</h2>
+        <p class="subtitle">Transformamos datos complejos y fragmentados en información útil para tu toma de decisiones estratégicas.</p>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>Monitoreo en Tiempo Real</h3>
+                <p>Visualización centralizada de rutas, horarios, precios y estados de vuelo, integrando datos actualizados provenientes de múltiples sistemas en tiempo real.</p>
+            </div>
+            <div class="card">
+                <h3>Análisis Predictivo de Datos</h3>
+                <p>Hacemos uso de modelos de análisis inteligente sobre tecnologías de Big Data para anticipar posibles retrasos, incidencias o variaciones abruptas de itinerarios.</p>
+            </div>
+            <div class="card">
+                <h3>Recomendaciones Inteligentes</h3>
+                <p>Recibe alertas automáticas personalizadas sobre rebajas significativas de costos y sugerencias de viaje estructuradas según tu historial de consultas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-form-section" id="contacto">
+        <div class="form-container">
+            <h2>Únete a nuestra Beta Cerrada</h2>
+            <p>Sé uno de los primeros estudiantes o viajeros frecuentes en experimentar la optimización inteligente de rutas aéreas.</p>
+            
+            <form onsubmit="event.preventDefault(); alert('¡Gracias por registrarte en IntiSky! El equipo de Celtics Solutions se pondrá en contacto pronto.');">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" placeholder="Ej. Jack Flores" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" id="correo" placeholder="Ej. ejemplo@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="perfil">Perfil de Viajero</label>
+                    <select id="perfil" required>
+                        <option value="" disabled selected>Selecciona tu perfil habitual</option>
+                        <option value="estudiante">Estudiante Universitario / Turista</option>
+                        <option value="frecuente">Viajero Frecuente por Negocios</option>
+                        <option value="ocasional">Viajes de Vacaciones Ocasionales</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit">Registrarme para el Acceso Móvil</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Celtics Solutions. Proyecto Universitario desarrollado para el curso de Diseño y Patrones de Software.</p>
+        <p>Universidad Peruana de Ciencias Aplicadas (UPC) — Ingeniería de Software</p>
+    </footer>
+
+</body>
+</html>
